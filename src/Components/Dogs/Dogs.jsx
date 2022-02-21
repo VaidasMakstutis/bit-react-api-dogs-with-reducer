@@ -6,13 +6,17 @@ const Dogs = () => {
 const {dogs} = useGlobalContext();
 
     return (
-        dogs.length && dogs.map (dog => (
+        dogs.length ? 
+        (dogs[0].map (dog => (
             <div className="card">
             <div className="card-body">
                 <img src={dog} alt="dog" />
             </div>
           </div> 
         ))
+        )
+        :
+        (<div></div>)
     );
   }
   

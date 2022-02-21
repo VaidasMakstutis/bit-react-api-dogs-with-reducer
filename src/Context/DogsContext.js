@@ -15,16 +15,30 @@ const AppProvider = ({ children }) => {
   const getRandomDog = () => {
     let dog;
     try {
-      axios.get(`https://dog.ceo/api/breed/${search.toLowerCase()}/images/random`).then(res => {
+      axios.get("https://dog.ceo/api/breeds/image/random").then(res => {
         dog = res.data.message;
         dispatch(getDogs(dog));
-        console("Dog:", dog);
+        // console("Dog:", dog);
       });
     } catch (error) {
       console.log("Šuns veislė nerasta...");
     }
   };
-  return <AppContext.Provider value={{ ...state, getRandomDog }}>{children}</AppContext.Provider>;
+
+  const getSearchDog = (search) => {
+    let dog;
+    try {
+      axios.get(`https://dog.ceo/api/breed/${search.toLowerCase()}/images/random/7`).then(res => {
+        dog = res.data.message;
+        dispatch(getDogs(dog));
+        // console.log("Dog:", dog);
+      });
+    } catch (error) {
+      console.log("Šuns veislė nerasta...");
+    }
+  };
+
+  return <AppContext.Provider value={{ ...state, getRandomDog, getSearchDog }}>{children}</AppContext.Provider>;
 };
 
 export const useGlobalContext = () => {

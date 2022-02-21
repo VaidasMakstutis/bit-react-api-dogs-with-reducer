@@ -15,16 +15,16 @@ const AppProvider = ({ children }) => {
   const getRandomDog = () => {
     let dog;
     try {
-      axios.get(`https://dog.ceo/api/breeds/images/random`).then(res => {
+      axios.get(`https://dog.ceo/api/breed/${search.toLowerCase()}/images/random`).then(res => {
         dog = res.data.message;
         dispatch(getDogs(dog));
-        console(dog);
+        console("Dog:", dog);
       });
     } catch (error) {
       console.log("Šuns veislė nerasta...");
     }
-    return <AppContext.Provider value={{ ...state, getRandomDog }}>{children}</AppContext.Provider>;
   };
+  return <AppContext.Provider value={{ ...state, getRandomDog }}>{children}</AppContext.Provider>;
 };
 
 export const useGlobalContext = () => {

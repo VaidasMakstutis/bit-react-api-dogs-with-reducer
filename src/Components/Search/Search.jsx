@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useGlobalContext } from "../../Context/DogsContext";
+import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 
-function Search() {
-  const { dogs, getRandomDog } = useGlobalContext;
+const Search = () => {
+  const { dogs, getRandomDog } = useGlobalContext();
   const [search, setSearch] = useState("");
 
   const handleSubmit = e => {
@@ -13,16 +14,12 @@ function Search() {
   return (
     <div>
       <h2>Search dogs</h2>
-      <form onSubmit={handleSubmit}>
-          <div className="input-group w-100 mb-2 p-2">
-            <input type="text" className="form-control" placeholder="Please enter dog specie..." onChange={e => setSearch(e.target.value)} />
-          </div>
-          <div className="input-group w-25 mb-2 p-2">
-            <button className="btn btn-primary" type="submit">
-              Search
-            </button>
-          </div>
-      </form>
+      <Form onSubmit={handleSubmit}>
+      <InputGroup className="mb-2 w-50">
+            <Form.Control onChange={e => setSearch(e.target.value)} placeholder="Please enter dog specie..." />
+            <Button variant="btn btn-primary" type="submit">Search</Button>
+      </InputGroup>
+      </Form>
     </div>
   );
 }

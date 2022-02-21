@@ -1,1 +1,1 @@
-export const GET_DOG = 'GET DOG';
+export const GET_DOG = "GET_DOG";
